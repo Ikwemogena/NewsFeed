@@ -1,0 +1,243 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,600&display=swap');
+
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: 'Playfair Display', serif;
+    background-color: #f5f5f5;
+    color: #000000;
+}
+
+.header {
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem;
+    /* background-color: #fff;
+    padding: 20px 0;
+    border-bottom: 1px solid #eee; */
+}
+
+.container {
+    /* max-width: 1000px; Example: Set the maximum width of the container */
+    margin: 0 auto; /* Example: Center the container horizontally */
+    padding: 20px; /* Example: Add padding to the container */
+    /* Additional styling properties for the container */
+}
+
+ul{
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+    color: #000;
+} 
+
+.carousel {
+    position: relative;
+    width: 100%;
+    max-width: 100%; /* Update to use maximum width of the screen */
+    margin: 0 auto;
+    overflow: hidden;
+    height: 400px; /* Set the desired height of the carousel */
+  }
+  
+  .carousel-container {
+    display: flex;
+    width: 100%;
+    height: 100%; /* Ensure the container fills the carousel height */
+  }
+  .carousel-caption {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    font-size: 2rem;
+    text-align: center;
+  }
+  
+  .carousel-slide {
+    flex-shrink: 0;
+    width: 100%;
+  }
+  
+  .carousel-slide img {
+    width: 100%;
+    height: 100%; /* Make the images fill the slide height */
+    object-fit: cover; /* Maintain aspect ratio and cover the slide */
+  }
+  
+  .carousel-prev,
+  .carousel-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: transparent;
+    border: none;
+    color: #000;
+    font-size: 24px;
+    padding: 10px;
+  }
+  .carousel-prev:hover,
+  .carousel-next:hover {
+    color: red;
+    background-color: #fff;
+    border-radius: 2rem;
+
+  }
+
+  .carousel-prev {
+    left: 10px;
+  }
+  
+  .carousel-next {
+    right: 10px;
+  }
+
+/* hr {
+    
+} */
+
+  
+
+/* #trending {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+} */
+
+.trending-items{
+    display: flex;
+    /* justify-content: center; */
+    /* flex-wrap: wrap; */
+    gap: 2rem;
+    margin-top: 2rem;
+    padding: 0 7rem;
+}
+.trending-items h3 {
+    margin-bottom: 1rem;
+}
+
+.category {
+    /* margin-top: 2rem; */
+    /* padding: 0 3rem; */
+    color: #000000;
+
+    display: flex;
+    flex-direction: column;
+    /* width: 50%; */
+    width: 300px;
+}
+
+
+.category img {
+    margin: 1.3rem 0 1rem 0;
+    height: 400px;
+    width: 291px;
+}
+
+.sub-headline {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    color: #000000;
+    
+    padding: 0 1rem;
+    /* margin-top: 2rem; */
+    /* margin-bottom: 2rem; */
+}
+
+.sub-headline img {
+    width: 414px;
+    height: 294px;
+    margin-bottom: 1rem;
+}
+
+/* for h1 header */
+/* sub category article titles */
+#category-title,
+#sub-headline {
+    margin: 0 0 20px;
+    /* margin: 1rem 0 1rem 0; */
+    font-size: 2rem;
+    font-weight: 200;
+}
+
+/* articles */
+#article,
+#category-article {
+    margin: 0 0 20px;
+    /* margin: 1rem 0 1rem 0; */
+    font-size: 1rem;
+    font-weight: 200;
+}
+
+.sub-headline .description {
+    margin-bottom: 1rem;
+    /* margin: 1rem 0 1rem 0; */
+    font-size: 1rem;
+    /* line-height: 1.2; */
+}
+
+.sub-headline > div {
+    padding: 0 0 10px;
+}
+
+.latest-stories {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+.latest-stories h2 {
+    font-size: 2.5rem;
+    /* width: 70%; */
+    font-weight: 500;
+    /* margin-bottom: 1rem; */
+}
+.latest-stories h4 {
+    font-size: 1.2rem;
+    /* margin: 0 0 20px; */
+    margin: 20px 0 35px;
+}
+
+.latest-stories>div p {
+    font-size: 1rem;
+    margin: 0 0 20px;
+}
+
+.latest-stories>div img {
+    width: 315px;
+    height: 250px;
+    margin: 30px 0 30px;
+}
+
+
+.custom-hr {
+    width: 100%; /*  Set the desired width for the <hr> element */
+    height: 0.1rem; /* Set the desired height for the <hr> element */
+    background-color: #000; /* Set the desired background color for the <hr> element */
+    border: none; /* Remove the default border of the <hr> element */
+    /* margin: 20px auto; Adjust the margin as needed */
+}
+
+
+#date {
+    font-weight: 500;
+    padding: 1rem 0 0.5rem 0;
+}
+
+#read-more {
+    font-weight: 500;
+    font-weight: 600;
+    padding: 0.5rem 0 1rem 0;
+}
