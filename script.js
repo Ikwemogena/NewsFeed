@@ -43,7 +43,9 @@ showSlide(slideIndex);
 // fetch data from newsapi
 const url = 'https://newsapi.org/v2/';
 
-const apiKey = '099148be22804e849a0c6fe022b7cf5e';
+// const apiKey = '099148be22804e849a0c6fe022b7cf5e';
+
+const apiKey = 'df7afeb1485345018df3761a0291db32';
 
 // fetch(`${url}top-headlines?apiKey=${apiKey}&q=news'`)
 
@@ -94,7 +96,7 @@ function callApi() {
 // get category headlines
 function getHeadlines(country) {
     // fetch(`${url}top-headlines/sources?apiKey=${apiKey}&category=${category}`)
-    fetch(`https://newsapi.org/v2/top-headlines?apiKey=099148be22804e849a0c6fe022b7cf5e&country=${country}`)
+    fetch(`https://newsapi.org/v2/top-headlines?apiKey=${apiKey}&country=${country}`)
         .then((response) => response.json())
         .then((data) => {
             // console.log(data.articles);        
@@ -161,10 +163,10 @@ function displayDate(dateDisplay, dateFormat){
 
 
 function getWorldNews() {
-    fetch(`https://newsapi.org/v2/top-headlines?country=us&apiKey=099148be22804e849a0c6fe022b7cf5e`)
+    fetch(`https://newsapi.org/v2/top-headlines?country=us&apiKey=${apiKey}`)
         .then(res => res.json())
         .then(data=> {
-            console.log(data.articles)
+            // console.log(data.articles)
 
 
             const worldImage = document.querySelector('#world-news-image');
@@ -190,12 +192,10 @@ function getWorldNews() {
             worldArticleTwo.textContent = data.articles[1].description;
             worldArticleThree.textContent = data.articles[2].description;
         })
+        .catch(err => console.log(err));
 }
 
-
 getWorldNews();
-
-
 
 document.addEventListener("DOMContentLoaded", function() {
     const truncateElements = document.querySelectorAll(".truncate");
@@ -205,5 +205,53 @@ document.addEventListener("DOMContentLoaded", function() {
         this.classList.toggle("truncate"); // Toggle the truncate class
       });
     });
-  });
-  
+  }
+);
+
+
+// fetch technology news from tech crunch
+function getCategoryNews() {
+    fetch(`https://newsapi.org/v2/top-headlines?apiKey=df7afeb1485345018df3761a0291db32&sources=techcrunch`)
+        .then(res => res.json())
+        .then(data => {
+            console.log(data.articles)
+
+            // images
+            const techImage = document.querySelector('.tech-news-image-one');
+            const techImageTwo = document.querySelector('.tech-news-image-two');
+
+            techImage.src = data.articles[0].urlToImage;
+            techImageTwo.src = data.articles[1].urlToImage;
+
+            // headlines
+
+            const techArticleOne = document.querySelector('.category-title-one');
+            const techArticeTwo = document.querySelector('.category-title-two');
+            // const techArticleThree = document.querySelector('.category-title-three');
+
+            techArticleOne.textContent = data.articles[0].title;
+            techArticeTwo.textContent = data.articles[1].title;
+            // techArticleThree.textContent = data.articles[2].title;
+
+
+            // dates
+            const articleOneDate = document.querySelector('.category-title-one-date');
+            const articleTwoDate = document.querySelector('.category-title-two-date');
+
+            displayDate(articleOneDate, data.articles[0].publishedAt)
+            displayDate(articleTwoDate, data.articles[1].publishedAt)
+
+            // articleOneDate.textContent = ;
+
+        })
+        .catch(err => console.log(err))
+
+}
+
+getCategoryNews();
+
+
+// function newsSearch(wordInput){
+//     wordInput
+
+// }
