@@ -18,9 +18,15 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 2rem;
+    font-size: 1.2rem;
     /* background-color: #fff;
     padding: 20px 0;
     border-bottom: 1px solid #eee; */
+}
+
+.search {
+    display: flex;
+    gap: 0.5rem;
 }
 
 .container {
@@ -30,7 +36,7 @@ body {
     /* Additional styling properties for the container */
 }
 
-ul{
+header ul{
     display: flex;
     gap: 2rem;
     list-style: none;
@@ -240,4 +246,95 @@ a{
     font-weight: 500;
     font-weight: 600;
     padding: 0.5rem 0 1rem 0;
+}
+
+
+.truncate {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+    width: 400px;
+}
+
+.image-placeholder {
+    position: relative;
+    width: 400px;
+    height: 200px;
+    background-color: #f2f2f2;
+}
+  
+.placeholder-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1rem;
+    color: #888888;
+}
+  
+
+/* footer */
+
+footer {
+    color: #fff;
+}
+
+.site-footer {
+    background-color: #000000;
+    color: #fff;
+    /* padding: 20px 0; */
+}
+  
+.footer-content {
+    display: flex;
+    align-items: center;
+    gap: 8rem;
+    justify-content: space-between;
+    /* justify-content: center; */
+    max-width: 1200px;
+}
+
+.footer-nav {
+    
+    display: flex;
+    gap: 3rem;
+}
+
+.footer-nav p {
+    color: #c5c5c5
+}
+
+.footer-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+  
+.footer-nav li {
+    color: #c5c5c5;
+    margin-right: 20px;
+}
+  
+.footer-nav a {
+    color: #c5c5c5;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+.nav-items{
+    /* color: ; */
+    /* margin-right: 50px; */
+    width: 250px
+}
+
+.nav-items h3 {
+    margin: 30px 0 0 0;
+    padding: 0 0 20px;
+}
+
+.nav-items ul {
+    color: #f5f5f5;
+    list-style: none;
+    padding: 0;
+    margin-top: 1rem;
 }

@@ -11,17 +11,18 @@
 </head>
 <body>
     <header class="header">
-        <div>LOGO</div>
+        <div><a href="/">NEWSPAPER.com</a></div>
         <nav>
             <ul>
-            <li><a href="#">World</a></li>
-            <li><a href="#">Business</a></li>
-            <li><a href="#">Technology</a></li>
-            <li><a href="#">Entertainment</a></li>
-            <li><a href="#sports">Sports</a></li>
+                <li><a href="#">World</a></li>
+                <li><a href="#">Business</a></li>
+                <li><a href="#">Technology</a></li>
+                <li><a href="#">Entertainment</a></li>
+                <li><a href="#">Sports</a></li>
             </ul>
         </nav>
         <div class="search">
+            <!-- <input type="text" placeholder="Search" id="search"> -->
             <p>Search</p>
         </div>
     </header>
@@ -29,10 +30,6 @@
     <main class="container">
         <section id="home">
             <!-- tailored to world and country -->
-            <div id="carousel">
-
-            </div>
-
             <div class="carousel">
                 <div class="carousel-container">
                   <div class="carousel-slide">
@@ -59,11 +56,13 @@
         <section id="trending">
             <div class="trending-items">
                 <div class="category">
-                    <h3 id="category-name"></h3>
+                    <h3 id="category-name">category news</h3>
                     <hr class="custom-hr">
                     <div>
                         <img id="category-headline-image" src="" alt="">
-                        <p id="date">11 December 2021</p>
+                        <p class="category-title-one-date" id="date" >dateee</p>
+                        <!-- <p class="placeholder-text">Image Not Available</p> -->
+
                         <h3 class="category-title-one" id="category-title"></h3>
                         <p class="category-article-one" id="category-article">Some interesting inspirations and camera settings during photo sessions in the studio. Thanks to this, your photos will be even better. We have create...</p>
                         <p id="read-more">Read more</p>
@@ -71,7 +70,7 @@
 
                     <div>
                         <img src="https://media.cnn.com/api/v1/images/stellar/prod/230530141641-moscow-building-attack-0530.jpg?c=16x9&q=h_720,w_1280,c_fill" alt="">
-                        <p>11 December 2021</p>
+                        <p class="category-title-two-date" id="date">11 December 2021</p>
                         <h3 class="category-title-two" id="category-title">unsplash-best</h3>
                         <p class="category-article-two" id="category-article">Do you know a portal with interesting photos on various topics and also free to download? I will check this article.Quick contactGet to know our offic...</p>
                         <p id="read-more">Read more</p>
@@ -83,13 +82,15 @@
                 <div class="sub-headline">
 
                     <h3>World News</h3>
-                    <p class="description">In this section you will find all the latest articles added by our blog specialists. We invite you to read.</p>
+                    <!-- <p class="description">In this section you will find all the latest articles added by our blog specialists. We invite you to read.</p> -->
+
+                    <p class="description truncate">In this section you will find all the latest news articles, reports, and analysis on topics such as international relations, global conflicts, major events, the global economy, human rights, and international security.</p>
 
                     <div>
-                        <img src="https://www.reuters.com/resizer/jwxmUyCPFQ1zbrnXQsLljWHZrww=/480x0/filters:quality(80)/cloudfront-us-east-2.images.arcpublishing.com/reuters/I2V6MKCY7JJJNJHP6JCRWYQQKU.jpg" alt="">
+                        <img id="world-news-image" src="" alt="">
                         <p id="date">11 December 2021</p>
-                        <h1 id="sub-headline">Newspaper creates with a hobby</h1>
-                        <p id="article">We focus on and take care of the development of our articles, taking care of the highest level. Meet our creators and their biographies. In this secti...</p>
+                        <h1 class="world-news-one" id="sub-headline"></h1>
+                        <p class="world-article-one" id="article">We focus on and take care of the development of our articles, taking care of the highest level. Meet our creators and their biographies. In this secti...</p>
                         <p id="read-more">Read more</p>
                     </div>
 
@@ -97,8 +98,8 @@
 
                     <div>
                         <p id="date">11 December 2021</p>
-                        <h1 id="sub-headline">Our company in significant numbers</h1>
-                        <p id="article">We focus on and take care of the development of our articles, taking care of the highest level. Meet our creators and their biographies. In this secti...</p>
+                        <h1 class="world-news-two" id="sub-headline"></h1>
+                        <p class="world-article-two" id="article">We focus on and take care of the development of our articles, taking care of the highest level. Meet our creators and their biographies. In this secti...</p>
                         <p id="read-more">Read more</p>
                     </div>
 
@@ -106,8 +107,8 @@
 
                     <div>
                         <p id="date">11 December 2021</p>
-                        <h1 id="sub-headline">Our company in significant numbers</h1>
-                        <p id="article">We focus on and take care of the development of our articles, taking care of the highest level. Meet our creators and their biographies. In this secti...</p>
+                        <h1 class="world-news-three" id="sub-headline"></h1>
+                        <p class="world-article-three" id="article">We focus on and take care of the development of our articles, taking care of the highest level. Meet our creators and their biographies. In this secti...</p>
                         <p id="read-more">Read more</p>
                     </div>
 
@@ -125,23 +126,28 @@
 
                 <div class="latest-stories">
                     <p>Newspaper from scratch</p>
-                    <h2>Our company creates with a hobby</h2>
+                    <!-- <h2 id="country-headline">Our company creates with a hobby</h2> -->
+
+                    <h2 id="country-headline">Updates from Nigeria</h2>
 
                     <div>
-                        <h4>Employed people</h4>
-                        <p>We focus on and take care of the development of our articles, taking care of the highest level. Meet our creators and their biographies.</p>
+                        <p class="country-date-one" id="date" ></p>
+                        <h4 id="country-headline-one"></h4>
+                        <p id="country-description-one"></p>
                     </div>
                     <hr class="custom-hr">
 
                     <div>
-                        <h4>Employed people</h4>
-                        <p>We focus on and take care of the development of our articles, taking care of the highest level. Meet our creators and their biographies.</p>
+                        <p class="country-date-two" id="date" ></p>
+                        <h4 id="country-headline-two"></h4>
+                        <p id="country-description-two"></p>
                     </div>
                     <hr class="custom-hr">
 
                     <div>
-                        <h4>Employed people</h4>
-                        <p>We focus on and take care of the development of our articles, taking care of the highest level. Meet our creators and their biographies.</p>
+                        <p class="country-date-three" id="date" ></p>
+                        <h4 id="country-headline-three"></h4>
+                        <p id="country-description-three">We focus on and take care of the development of our articles, taking care of the highest level. Meet our creators and their biographies.</p>
                     </div>
                     <hr class="custom-hr">
 
@@ -181,7 +187,49 @@
     </main>
     
 
-    <footer></footer>
+    <!-- <footer></footer> -->
+
+    <footer class="site-footer">
+        <div class="footer-content">
+          <div class="footer-logo">
+            <img src="" alt="Website Logo">
+          </div>
+          <nav class="footer-nav">
+            <div class="nav-items">
+                <h3>Company</h3>
+
+                <hr class="custom-hr">
+
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About Project</a></li>
+                    <li><a href="#">World</a></li>
+                    <li><a href="#">Business</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div class="nav-items">
+                <h3>Categories</h3>
+                <hr class="custom-hr" style="color: #f5f5f5;">
+                <div>
+                    <ul>
+                        <li><a href="#">General</a></li>
+                        <li><a href="#">Business</a></li>
+                        <li><a href="#">Technology</a></li>
+                        <li><a href="#">Business</a></li>
+                        <li><a href="#">Sports</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+          </nav>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2023 News.com All rights reserved.</p>
+        </div>
+      </footer>
+      
 
 
 

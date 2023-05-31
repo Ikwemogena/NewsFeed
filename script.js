@@ -1,41 +1,3 @@
-// const carouselContainer = document.querySelector('.carousel-container');
-// const prevButton = document.querySelector('.carousel-prev');
-// const nextButton = document.querySelector('.carousel-next');
-
-// let slideIndex = 0;
-
-// function showSlide(index) {
-//   const slides = carouselContainer.querySelectorAll('.carousel-slide');
-//   slides.forEach((slide, i) => {
-//     slide.style.transform = `translateX(${100 * (i - index)}%)`;
-//   });
-// }
-
-// function prevSlide() {
-//   slideIndex--;
-//   if (slideIndex < 0) {
-//     slideIndex = 0;
-//   }
-//   showSlide(slideIndex);
-// }
-
-// function nextSlide() {
-//   const slides = carouselContainer.querySelectorAll('.carousel-slide');
-//   if (slideIndex >= slides.length - 1) {
-//     slideIndex = slides.length - 1;
-//   } else {
-//     slideIndex++;
-//   }
-//   showSlide(slideIndex);
-// }
-
-// prevButton.addEventListener('click', prevSlide);
-// nextButton.addEventListener('click', nextSlide);
-
-// // Initialize the carousel
-// showSlide(slideIndex);
-
-
 const carouselContainer = document.querySelector('.carousel-container');
 const prevButton = document.querySelector('.carousel-prev');
 const nextButton = document.querySelector('.carousel-next');
@@ -68,6 +30,7 @@ function nextSlide() {
   } else {
     slideIndex++;
   }
+  
   showSlide(slideIndex);
 }
 
@@ -76,7 +39,6 @@ nextButton.addEventListener('click', nextSlide);
 
 // Initialize the carousel
 showSlide(slideIndex);
-
 
 // fetch data from newsapi
 const url = 'https://newsapi.org/v2/';
@@ -130,38 +92,118 @@ function callApi() {
 // getCountry();
 
 // get category headlines
-function getHeadlines(category) {
-    // fetch(`${url}top-headlines?apiKey=${apiKey}&category=${category}`)
-    fetch(`${url}top-headlines?sources=bbc-news&apiKey=${apiKey}`)
-    .then((response) => response.json())
-    .then((data) => {
-        console.log(data.articles)
-        const categoryName = document.querySelector('#category-name');
-        const catergoryHeadlineImage = document.querySelector('#category-headline-image');
+function getHeadlines(country) {
+    // fetch(`${url}top-headlines/sources?apiKey=${apiKey}&category=${category}`)
+    fetch(`https://newsapi.org/v2/top-headlines?apiKey=099148be22804e849a0c6fe022b7cf5e&country=${country}`)
+        .then((response) => response.json())
+        .then((data) => {
+            // console.log(data.articles);        
+            const categoryName = document.querySelector('#country-headline');
+            categoryName.textContent = `Updates from ${country} `;
+            // const catergoryHeadlineImage = document.querySelector('#category-headline-image');
 
-        const categoryHeadlineOne = document.querySelector('.category-title-one');
-        const categoryHeadlineTwo = document.querySelector('.category-title-two');
+            // date
 
-        const categoryArticleOne = document.querySelector('.category-article-one');
-        const categoryArticleTwo = document.querySelector('.category-article-two');
+            // if(data.article.source.name.includes('nigeria'))console.log(article, index)
 
-        categoryName.textContent = `${category} News`;
-        if (data.articles[0].urlToImage)catergoryHeadlineImage.src = data.articles[0].urlToImage;
-        categoryHeadlineOne.textContent = data.articles[0].title;
-        categoryArticleOne.textContent = data.articles[0].description;
 
-        categoryHeadlineTwo.textContent = data.articles[1].title;
-        categoryArticleTwo.textContent = data.articles[1].description;
-    }        
-        // data.articles.forEach((article, index) => {
-    )
-    .catch(err => console.log(err));
+            const countryDateOne = document.querySelector('.country-date-one');
+            displayDate(countryDateOne, data.articles[0].publishedAt)
+
+            const countryDateTwo = document.querySelector('.country-date-two');
+            displayDate(countryDateTwo, data.articles[1].publishedAt)
+
+            const countryDateThree = document.querySelector('.country-date-three');
+            displayDate(countryDateThree, data.articles[2].publishedAt)
+
+
+
+            const countryHeadlineOne = document.querySelector('#country-headline-one');
+            const countryHeadlineTwo = document.querySelector('#country-headline-two');
+            const countryHeadlineThree = document.querySelector('#country-headline-three');
+
+            const categoryDescriptionOne = document.querySelector('#country-description-one');
+            const categoryDescriptionTwo = document.querySelector('#country-description-two');
+
+            const categoryDescriptionThree = document.querySelector('#country-description-three');          
+
+            
+              
+            countryHeadlineOne.textContent = data.articles[0].title;
+            categoryDescriptionOne.textContent = data.articles[0].description;
+
+            countryHeadlineTwo.textContent = data.articles[1].title;
+            categoryDescriptionTwo.textContent = data.articles[1].description;
+
+            countryHeadlineThree.textContent = data.articles[2].title;
+            categoryDescriptionThree.textContent = data.articles[2].description;
+        }        
+            // data.articles.forEach((article, index) => {
+        )
+        .catch(err => console.log(err));
     // https://newsapi.org/v2/top-headlines?apiKey=099148be22804e849a0c6fe022b7cf5e&category=entertainment&country=ng
 }
 
 callApi();
 
-getHeadlines('Trending');
+getHeadlines('ng');
+
+
+// convert date
+function displayDate(dateDisplay, dateFormat){
+    const dateString = dateFormat;
+    const date = new Date(dateString);
+    const options = { timeZone: 'UTC' };
+    const formattedDate = date.toLocaleString('en-US', options);
+
+    dateDisplay.textContent = formattedDate;
+}
+
+
+function getWorldNews() {
+    fetch(`https://newsapi.org/v2/top-headlines?country=us&apiKey=099148be22804e849a0c6fe022b7cf5e`)
+        .then(res => res.json())
+        .then(data=> {
+            console.log(data.articles)
+
+
+            const worldImage = document.querySelector('#world-news-image');
+
+            worldImage.src = data.articles[0].urlToImage;
+
+            // headlines
+            const worldNewsOne = document.querySelector('.world-news-one');
+            const worldNewsTwo = document.querySelector('.world-news-two');
+            const worldNewsThree = document.querySelector('.world-news-three');
+
+            worldNewsOne.textContent = data.articles[0].title;
+            worldNewsTwo.textContent = data.articles[1].title;
+            worldNewsThree.textContent = data.articles[2].title;
+
+            // articles
+
+            const worldArticleOne = document.querySelector('.world-article-one');
+            const worldArticleTwo = document.querySelector('.world-article-two');
+            const worldArticleThree = document.querySelector('.world-article-three');
+
+            worldArticleOne.textContent = data.articles[0].description;
+            worldArticleTwo.textContent = data.articles[1].description;
+            worldArticleThree.textContent = data.articles[2].description;
+        })
+}
+
+
+getWorldNews();
 
 
 
+document.addEventListener("DOMContentLoaded", function() {
+    const truncateElements = document.querySelectorAll(".truncate");
+    
+    truncateElements.forEach(function(element) {
+      element.addEventListener("click", function() {
+        this.classList.toggle("truncate"); // Toggle the truncate class
+      });
+    });
+  });
+  
