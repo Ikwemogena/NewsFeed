@@ -390,10 +390,96 @@ footer {
   color: #ffffff; /* Set the desired color, e.g., white */
 }
 
-
-
-
-
 .hidden {
     display: none;
+}
+
+
+@media (max-width: 576px) {
+    .header {
+        background-color: #888888;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0.5rem;
+    }
+
+    .search {
+        /* flex-direction: column; */
+        gap: 0;
+    }
+
+    .container {
+        padding: 5px;
+    }
+
+    header ul {
+        display: none;
+    }
+
+    .carousel {
+        width: 10000px;
+        height: 300px;
+    }
+
+    .carousel-caption {
+        font-size: 1rem;
+    }
+
+    .carousel-prev,
+    .carousel-next {
+        font-size: 20px;
+        padding: 5px;
+    }
+
+    .trending-items {
+        display: block;
+        /* gap: 1.5rem; */
+        padding: 0;
+    }
+
+    .category {
+        width: 100%;
+    }
+
+    .category img {
+        width: 100%;
+    }
+
+    .sub-headline {
+        width: 100%;
+        display: block;
+        color: #000000;
+        padding: 0;
+        margin-top: 1.2rem;
+    }
+
+    .sub-headline img {
+        width: 100%;
+        height: auto;
+    }
+
+    .latest-stories{
+        width: 100%;
+    }
+
+    .latest-stories h2 {
+        font-size: 1.8rem;
+    }
+
+    .latest-stories h4 {
+        font-size: 1rem;
+    }
+
+    .latest-stories > div p {
+        font-size: 0.9rem;
+    }
+
+    .latest-stories > div img {
+        width: 100%;
+        height: auto;
+    }
+
+    .truncate {
+        width: 310px;
+    }
 }
