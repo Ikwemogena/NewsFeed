@@ -5,11 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-KyZXEAgm7b7xJM5jpeB5FPW5+jMmEiwrmfN12kWlpMzkolr8+2tAwP+b3cRvZ1bQ" crossorigin="anonymous">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <title>Newspaper | Home</title>
     
-    <script src="script.js" defer></script>
+    <script type="module" src="script.js" defer></script>
 </head>
 <body>
     <header class="header">
@@ -25,7 +26,9 @@
         </nav>
         <div class="search">
             <!-- <input type="text" placeholder="Search" id="search"> -->
-            <p>Search</p>
+            <input type="text"  class="hidden" id="search-input" placeholder="What are you looking for?">
+            <i class="fas fa-search" id="search-icon"></i>
+            <!-- <p>Search</p> -->
         </div>
     </header>
     <div class="not-available hidden">
@@ -243,11 +246,6 @@
         <div class="footer-bottom">
           <p>&copy; 2023 News.com All rights reserved.</p>
         </div>
-      </footer> -->
-      
-
-
-
-    
-</body>
+      </footer> -->    
+<script defer src="runtime.bundle.js"></script><script defer src="index.bundle.js"></script></body>
 </html>

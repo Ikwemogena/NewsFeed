@@ -1,60 +1,29 @@
-const carouselContainer = document.querySelector('.carousel-container');
-const prevButton = document.querySelector('.carousel-prev');
-const nextButton = document.querySelector('.carousel-next');
+'use strict';
+import searchNews from './search.js';
+import carousel from './carousel.js';
 
-let slideIndex = 0;
+import './style.css';
 
-function showSlide(index) {
-  const slides = carouselContainer.querySelectorAll('.carousel-slide');
-  slides.forEach((slide, i) => {
-    if (i === index) {
-      slide.style.display = 'block';
-    } else {
-      slide.style.display = 'none';
-    }
-  });
-}
+const apiKey = process.env.API_KEY;
+const apiUrl = process.env.API_URL;
 
-function prevSlide() {
-  slideIndex--;
-  if (slideIndex < 0) {
-    slideIndex = 0;
-  }
-  showSlide(slideIndex);
-}
 
-function nextSlide() {
-  const slides = carouselContainer.querySelectorAll('.carousel-slide');
-  if (slideIndex >= slides.length - 1) {
-    slideIndex = slides.length - 1;
-  } else {
-    slideIndex++;
-  }
-  
-  showSlide(slideIndex);
-}
-
-prevButton.addEventListener('click', prevSlide);
-nextButton.addEventListener('click', nextSlide);
-
-// Initialize the carousel
-showSlide(slideIndex);
-
-// fetch data from newsapi
-const url = 'https://newsapi.org/v2/';
-
-// const apiKey = '099148be22804e849a0c6fe022b7cf5e';
-
-const apiKey = 'df7afeb1485345018df3761a0291db32';
-
-// fetch(`${url}top-headlines?apiKey=${apiKey}&q=news'`)
-
-let headlines;
+carousel();
+getWorldNews();
+callApi();
+getHeadlines('ng');
+getCategoryNews();
 
 function callApi() {
     // fetch('https://newsapi.org/v2/top-headlines?apiKey=099148be22804e849a0c6fe022b7cf5e&country=us')
-    fetch(`${url}top-headlines?apiKey=${apiKey}&country=us`)
-    .then((response) => response.json())
+    fetch(`${apiUrl}top-headlines?apiKey=${apiKey}&country=us`)
+    .then((response) => {
+        if (response.ok) {
+            return response.json();
+        } else {
+            throw new Error(apiMessage);
+        }
+    })
     .then((data) => data.articles.forEach((article, index) => {
         const carouselHeadlineOne = document.querySelector('#first-headline');
         const carouselHeadlineTwo = document.querySelector('#second-headline');
@@ -96,29 +65,30 @@ function callApi() {
 // get category headlines
 function getHeadlines(country) {
     // fetch(`${url}top-headlines/sources?apiKey=${apiKey}&category=${category}`)
-    fetch(`https://newsapi.org/v2/top-headlines?apiKey=${apiKey}&country=${country}`)
-        .then((response) => response.json())
+    fetch(`${apiUrl}top-headlines?apiKey=${apiKey}&country=${country}`)
+        .then((response) => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error(apiMessage);
+            }
+        })
         .then((data) => {
-            // console.log(data.articles);        
+            console.log(data.articles);        
             const categoryName = document.querySelector('#country-headline');
             categoryName.textContent = `Updates from ${country} `;
-            // const catergoryHeadlineImage = document.querySelector('#category-headline-image');
-
-            // date
-
-            // if(data.article.source.name.includes('nigeria'))console.log(article, index)
-
 
             const countryDateOne = document.querySelector('.country-date-one');
-            displayDate(countryDateOne, data.articles[0].publishedAt)
+            countryDateOne.textContent = data.articles[0].author;
+            // displayDate(countryDateOne, data.articles[0].publishedAt)
 
             const countryDateTwo = document.querySelector('.country-date-two');
-            displayDate(countryDateTwo, data.articles[1].publishedAt)
+            // displayDate(countryDateTwo, data.articles[1].publishedAt)
+            countryDateTwo.textContent = data.articles[1].author;
 
             const countryDateThree = document.querySelector('.country-date-three');
-            displayDate(countryDateThree, data.articles[2].publishedAt)
-
-
+            // displayDate(countryDateThree, data.articles[2].publishedAt)
+            countryDateThree.textContent = data.articles[2].author;
 
             const countryHeadlineOne = document.querySelector('#country-headline-one');
             const countryHeadlineTwo = document.querySelector('#country-headline-two');
@@ -129,7 +99,6 @@ function getHeadlines(country) {
 
             const categoryDescriptionThree = document.querySelector('#country-description-three');          
 
-            
               
             countryHeadlineOne.textContent = data.articles[0].title;
             categoryDescriptionOne.textContent = data.articles[0].description;
@@ -146,25 +115,32 @@ function getHeadlines(country) {
     // https://newsapi.org/v2/top-headlines?apiKey=099148be22804e849a0c6fe022b7cf5e&category=entertainment&country=ng
 }
 
-callApi();
-
-getHeadlines('ng');
-
-
 // convert date
 function displayDate(dateDisplay, dateFormat){
     const dateString = dateFormat;
     const date = new Date(dateString);
-    const options = { timeZone: 'UTC' };
+
+    // date = new Date(dateString)
+    // const options = { timeZone: 'UTC' };
+    // const formattedDate = date.toLocaleString('en-US', options);
+
+
+    const options = { weekday: 'long', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' };
     const formattedDate = date.toLocaleString('en-US', options);
 
-    dateDisplay.textContent = formattedDate;
+  dateDisplay.textContent = formattedDate;
 }
 
 
 function getWorldNews() {
-    fetch(`https://newsapi.org/v2/top-headlines?country=us&apiKey=${apiKey}`)
-        .then(res => res.json())
+    fetch(`${apiUrl}top-headlines?country=us&apiKey=${apiKey}`)
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error(apiMessage);
+            }
+        })
         .then(data=> {
             // console.log(data.articles)
 
@@ -195,7 +171,7 @@ function getWorldNews() {
         .catch(err => console.log(err));
 }
 
-getWorldNews();
+
 
 document.addEventListener("DOMContentLoaded", function() {
     const truncateElements = document.querySelectorAll(".truncate");
@@ -208,11 +184,18 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 );
 
+const apiMessage = 'Sorry, API no longer available will be back up soon';
 
 // fetch technology news from tech crunch
 function getCategoryNews() {
-    fetch(`https://newsapi.org/v2/top-headlines?apiKey=df7afeb1485345018df3761a0291db32&sources=techcrunch`)
-        .then(res => res.json())
+    fetch(`${apiUrl}top-headlines?apiKey=${apiKey}&sources=techcrunch`)
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error(apiMessage);
+            }
+        })
         .then(data => {
             console.log(data.articles)
 
@@ -233,7 +216,6 @@ function getCategoryNews() {
             techArticeTwo.textContent = data.articles[1].title;
             // techArticleThree.textContent = data.articles[2].title;
 
-
             // dates
             const articleOneDate = document.querySelector('.category-title-one-date');
             const articleTwoDate = document.querySelector('.category-title-two-date');
@@ -248,10 +230,99 @@ function getCategoryNews() {
 
 }
 
-getCategoryNews();
-
-
-// function newsSearch(wordInput){
-//     wordInput
+// function newsSearch(topic){
+//     console.log(topic);
 
 // }
+
+
+// // search functionality
+
+// // const searchForm = document.querySelector('form');
+// // const searchResultsContainer = document.querySelector('#search-results');
+
+// // const searchForm = document.querySelector('form');
+
+// // searchForm.addEventListener('submit', function (event) {
+// //   event.preventDefault();
+
+// //   const searchTerm = searchInput.value.trim();
+
+//   // Perform the search logic based on the searchTerm
+
+//   // Display the search results
+// //   displaySearchResults(searchTerm);
+// // });
+// const searchInput = document.querySelector('#search-input');
+//     // const searchTerm = searchInput.value.trim();
+//     const navBar = document.querySelector('.nav-bar');
+
+// const searchIcon = document.querySelector('#search-icon');
+// searchIcon.addEventListener('click', function(){
+//     console.log('clicked');
+//     navBar.classList.toggle('hidden');
+//     searchInput.classList.toggle('hidden');
+
+// });
+
+
+// searchInput.addEventListener('input', function() {
+
+//     const searchTerm = searchInput.value.trim();
+    
+//     if (searchTerm !== '') {
+//         console.log('Search term:', searchTerm);
+//         searchNews(searchTerm);
+//     } 
+// });
+
+const searchInput = document.querySelector('#search-input');
+const navBar = document.querySelector('.nav-bar');
+const searchIcon = document.querySelector('#search-icon');
+
+searchIcon.addEventListener('click', function() {
+    console.log('clicked');
+    navBar.classList.toggle('hidden');
+    searchInput.classList.toggle('hidden');
+});
+
+
+// hide home
+const carouseDisplay = document.querySelector('#home');
+const trending =  document.querySelector('#trending');
+
+const searchSection = document.querySelector('#search-section');
+
+searchInput.addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+        carouseDisplay.classList.add('hidden');
+        trending.classList.add('hidden');
+        searchInput.classList.add('hidden');
+
+        searchSection.classList.remove('hidden');
+        event.preventDefault();
+        const searchTerm = searchInput.value.trim();
+        if (searchTerm !== '') {
+            console.log('Search term:', searchTerm);
+            searchNews(searchTerm);
+        }
+    }
+});
+
+searchInput.addEventListener('input', function() {
+    const searchTerm = searchInput.value.trim();
+    if (searchTerm !== '') {
+        console.log('Search term:', searchTerm);
+        // searchNews(searchTerm);
+    }
+});
+
+    
+
+    
+
+    
+
+    
+
+
