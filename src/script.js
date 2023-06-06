@@ -1,54 +1,59 @@
 'use strict';
 import searchNews from './search.js';
 import carousel from './carousel.js';
-
+import { showLoader, hideLoader } from './loader.js';
 import './style.css';
 
 const apiKey = process.env.API_KEY;
 const apiUrl = process.env.API_URL;
 
-
 carousel();
 getWorldNews();
 callApi();
-getHeadlines('ng');
+// getHeadlines('ng');
+getCountryInfo();
 getCategoryNews();
 
 function callApi() {
-    // fetch('https://newsapi.org/v2/top-headlines?apiKey=099148be22804e849a0c6fe022b7cf5e&country=us')
+
+  showLoader();
     fetch(`${apiUrl}top-headlines?apiKey=${apiKey}&country=us`)
     .then((response) => {
+      showLoader();
         if (response.ok) {
+          
             return response.json();
         } else {
             throw new Error(apiMessage);
         }
     })
     .then((data) => data.articles.forEach((article, index) => {
-        const carouselHeadlineOne = document.querySelector('#first-headline');
-        const carouselHeadlineTwo = document.querySelector('#second-headline');
-        const carouselHeadlineThird = document.querySelector('#third-headline');
+      hideLoader();
+      const carouselHeadlineOne = document.querySelector('#first-headline');
+      const carouselHeadlineTwo = document.querySelector('#second-headline');
+      const carouselHeadlineThird = document.querySelector('#third-headline');
 
-        const carouselImageOne = document.querySelector('#carousel-image-first');
-        const carouselImageTwo = document.querySelector('#carousel-image-second');
-        const carouselImageThird = document.querySelector('#carousel-image-third');
+      const carouselImageOne = document.querySelector('#carousel-image-first');
+      const carouselImageTwo = document.querySelector('#carousel-image-second');
+      const carouselImageThird = document.querySelector('#carousel-image-third');
 
-        carouselHeadlineOne.textContent = article.title;
-        carouselImageOne.src = article.urlToImage;
+      carouselHeadlineOne.textContent = article.title;
+      carouselImageOne.src = article.urlToImage;
 
-        // if(article.urlToImage)console.log(article, index)
+      // if(article.urlToImage)console.log(article, index)
 
-        if (index === 1){
-            carouselHeadlineTwo.textContent = article.title;
-            carouselImageTwo.src = article.urlToImage;
-            carouselImageTwo.src = article.urlToImage;
-        } else if (index === 2) {
-            carouselHeadlineThird.textContent = article.title;
-            carouselImageThird.src = article.urlToImage;
-        }
+      if (index === 1){
+          carouselHeadlineTwo.textContent = article.title;
+          carouselImageTwo.src = article.urlToImage;
+          carouselImageTwo.src = article.urlToImage;
+      } else if (index === 2) {
+          carouselHeadlineThird.textContent = article.title;
+          carouselImageThird.src = article.urlToImage;
+      }
         // console.log(article.title, index);
     }))
-    .catch(err => console.log(err));
+    .catch(err => console.log(err))
+    .finally(() => hideLoader());
 }
 
 
@@ -63,9 +68,9 @@ function callApi() {
 // getCountry();
 
 // get category headlines
-function getHeadlines(country) {
+function getHeadlines(countryTag, countryName) {
     // fetch(`${url}top-headlines/sources?apiKey=${apiKey}&category=${category}`)
-    fetch(`${apiUrl}top-headlines?apiKey=${apiKey}&country=${country}`)
+    fetch(`${apiUrl}top-headlines?apiKey=${apiKey}&country=${countryTag}`)
         .then((response) => {
             if (response.ok) {
                 return response.json();
@@ -76,7 +81,7 @@ function getHeadlines(country) {
         .then((data) => {
             console.log(data.articles);        
             const categoryName = document.querySelector('#country-headline');
-            categoryName.textContent = `Updates from ${country} `;
+            categoryName.textContent = `Updates from ${countryName} `;
 
             const countryDateOne = document.querySelector('.country-date-one');
             countryDateOne.textContent = data.articles[0].author;
@@ -230,51 +235,6 @@ function getCategoryNews() {
 
 }
 
-// function newsSearch(topic){
-//     console.log(topic);
-
-// }
-
-
-// // search functionality
-
-// // const searchForm = document.querySelector('form');
-// // const searchResultsContainer = document.querySelector('#search-results');
-
-// // const searchForm = document.querySelector('form');
-
-// // searchForm.addEventListener('submit', function (event) {
-// //   event.preventDefault();
-
-// //   const searchTerm = searchInput.value.trim();
-
-//   // Perform the search logic based on the searchTerm
-
-//   // Display the search results
-// //   displaySearchResults(searchTerm);
-// // });
-// const searchInput = document.querySelector('#search-input');
-//     // const searchTerm = searchInput.value.trim();
-//     const navBar = document.querySelector('.nav-bar');
-
-// const searchIcon = document.querySelector('#search-icon');
-// searchIcon.addEventListener('click', function(){
-//     console.log('clicked');
-//     navBar.classList.toggle('hidden');
-//     searchInput.classList.toggle('hidden');
-
-// });
-
-
-// searchInput.addEventListener('input', function() {
-
-//     const searchTerm = searchInput.value.trim();
-    
-//     if (searchTerm !== '') {
-//         console.log('Search term:', searchTerm);
-//         searchNews(searchTerm);
-//     } 
-// });
 
 const searchInput = document.querySelector('#search-input');
 const navBar = document.querySelector('.nav-bar');
@@ -288,14 +248,14 @@ searchIcon.addEventListener('click', function() {
 
 
 // hide home
-const carouseDisplay = document.querySelector('#home');
+const carouselDisplay = document.querySelector('#home');
 const trending =  document.querySelector('#trending');
 
 const searchSection = document.querySelector('#search-section');
 
 searchInput.addEventListener('keydown', function(event) {
     if (event.key === 'Enter') {
-        carouseDisplay.classList.add('hidden');
+        carouselDisplay.classList.add('hidden');
         trending.classList.add('hidden');
         searchInput.classList.add('hidden');
 
@@ -305,17 +265,20 @@ searchInput.addEventListener('keydown', function(event) {
         if (searchTerm !== '') {
             console.log('Search term:', searchTerm);
             searchNews(searchTerm);
+            // searchNews(searchTerm, 1, 10);
+
+            navBar.classList.remove('hidden');
         }
     }
 });
 
-searchInput.addEventListener('input', function() {
-    const searchTerm = searchInput.value.trim();
-    if (searchTerm !== '') {
-        console.log('Search term:', searchTerm);
-        // searchNews(searchTerm);
-    }
-});
+// searchInput.addEventListener('input', function() {
+//     const searchTerm = searchInput.value.trim();
+//     if (searchTerm !== '') {
+//         console.log('Search term:', searchTerm);
+//         // searchNews(searchTerm);
+//     }
+// });
 
     
 
@@ -326,3 +289,31 @@ searchInput.addEventListener('input', function() {
     
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function getCountryInfo() {
+  fetch('https://ipapi.co/json/')
+    .then(response => response.json())
+    .then(data => {
+      const countryTag = data.country;
+      const countryName = data.country_name;
+      getHeadlines(countryTag, countryName);
+      console.log(countryTag, countryName);
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+}

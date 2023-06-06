@@ -29,7 +29,7 @@
         <div class="search">
             <!-- <input type="text" placeholder="Search" id="search"> -->
             <form>
-                <input type="text"  class="hidden" id="search-input" placeholder="What are you looking for today?">
+                <input type="text"  class="hidden" id="search-input" placeholder="Seek and you shall find news.">
             </form>
             <i class="fas fa-search" id="search-icon"></i>
             <!-- <p>Search</p> -->
@@ -41,7 +41,9 @@
     </div>
     <hr>
     <main class="container">
-        <!-- <div class="loader"></div> -->
+        <!-- <div class="loader-container">
+            <div class="loader"></div>
+        </div> -->
         <section id="home">
             <!-- tailored to world and country -->
             <div class="carousel">
@@ -59,7 +61,7 @@
                   <div class="carousel-slide">
                     <div class="image-overlay"></div>
                     <img id="carousel-image-third" src="" alt="Image 3">
-                    <h1 class="carousel-caption" id="third-headline">/h1>
+                    <h1 class="carousel-caption" id="third-headline"></h1>
                   </div>
                 </div>
                 <button class="carousel-prev">&#10094;</button>
@@ -151,7 +153,7 @@
                     <hr>
 
                     <div id="about-newspaper">
-                        <h4>About newspaper</h4>
+                        <h4>About newspaper Put newletter here</h4>
                         <p>
                             Visit our website every day and it will certainly be a useful and pleasant time for you. Use the navigation to find the articles.</p>
                     </div>
@@ -209,25 +211,25 @@
                     <h3>Filter-by</h3>
                     <div class="filter-by">
                         <div>
-                            <label for="section-filter">Section</label>
+                            <label for="section-filter">Section</label><br>
                             <select name="" id="section-filter">
                                 <option value="">All</option>  
-                                <option value="">Business</option>
-                                <option value="">Technology</option>
-                                <option value="">Sports</option>
+                                <option value="business">Business</option>
+                                <option value="technology">Technology</option>
+                                <option value="sports">Sports</option>
                             </select>
                         </div>
                         <div>
-                            <label for="source-filter">Source</label>
-                            <select name="" id="source-filter">
+                            <label for="source-filter">Source</label><br>
+                            <select name="" id="source-filter" class="filter-dropdown">
                                 <option value="">All</option>  
-                                <option value="">BBC</option>
-                                <option value="">CNN</option>
-                                <option value="">Aljazeera</option>
+                                <option value="bbc-news">BBC</option>
+                                <option value="cnn">CNN</option>
+                                <option value="Al-Jazeera-English">Aljazeera</option>
                             </select>
                         </div>
                         <div>
-                            <label for="date-filter">Date Range</label>
+                            <label for="date-filter">Date Range</label><br>
                         <select name="" id="date-filter">
                             <option value="">Any time</option>  
                             <option value="">Past 24 hours</option>
@@ -238,22 +240,37 @@
                     </div>
     
                 </div>
-                <div>
+                <div >
                     <h3>Search Newspaper.com</h3>
+                                          
                     <div class="search">
                         <!-- <input type="text" placeholder="Search" id="search">  -->
                         <form>
                             <input type="text" id="search-results" placeholder="What are you looking for today?">
                         </form>
+
                         <i class="fas fa-search" id="search-icon"></i>
+                        
                     </div>
+
                     <h2 class="search-topic">Search Results for "${topic}":</h2>
+        
                     <div style="max-width: 700px;">
                         
                         <div class="results">
                             <p>Results</p>
-                            <p>Sort</p>
+                            <!-- <p>Sort</p> -->
+                            <div><label for="sort-filter">Sort</label>
+                                <select name="" id="date-filter">
+                                    <option value="">Newest</option>  
+                                    <option value="">Oldest</option>
+                                    <option value="">Relevance</option>
+                                </select></div>
                         </div>
+                        <div class="loader-container">
+                            <div class="loader"></div>
+                        </div>
+                        <div id="errorContainer"></div>
                         <div id="article-results">
                             <!-- <div class="search-findings" style="display: flex;">
                                 <h3>title
@@ -322,27 +339,7 @@
                     <li><a href="#">Contact</a></li>
                 </ul>
             </div>
-    
-            <!-- <div class="social-icons">
-                <ul>
-                    <i class="fab fa-github github-icon"></i>
-                    <i class="fab fa-linkedin"></i> 
-                    <i class="fab fa-twitter"></i>
-                </ul>
-            </div> -->
         </div>
-
-        <!-- <div class="footer-bottom">
-            <div class="social-icons">
-                <ul>
-                    <a href="https://www.linkedin.com/in/ikwemogena-abdulai/" target="_blank">
-                    <i class="fab fa-github github-icon"></i></a>
-                    <i class="fab fa-linkedin"></i> 
-                    <i class="fab fa-twitter"></i>
-                </ul>
-            </div>
-            <p>&copy; 2023 News.com All rights reserved.</p>
-        </div> -->
 
         <div class="footer-bottom">
             <div class="social-icons">
