@@ -81,7 +81,7 @@ function performSearch(topic, source, category){
         if (!articles || articles.length === 0) {
           containerMovements.innerHTML = '';
           console.log('No articles found');
-          showNoResultsMessage(topic);
+          // showNoResultsMessage(topic);
           return []; // Return an empty array to avoid further errors
           
         } else if (articles.length === 1){
@@ -128,6 +128,7 @@ function showNoResultsMessage(topic) {
 
   const searchTopic = document.querySelector('.search-topic');
   searchTopic.textContent = ` Search Results for "${topic}"`;
+  console.log('shownoresults')
 
   containerMovements.innerHTML = '';
 
