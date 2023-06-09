@@ -79,13 +79,15 @@
                         <h3 id="category-name">Technology news</h3>
                         <hr>
                         <div>
-                            <img class="tech-news-image-one"  id="category-headline-image" src="" alt="">
+                            <div>
+                                <img class="tech-news-image-one"  id="category-headline-image" src="" alt="">
                             <p class="category-title-one-date" id="date" >dateee</p>
                             <!-- <p class="placeholder-text">Image Not Available</p> -->
 
                             <h3 class="category-title-one" id="category-title">FASHION NEWS HEADLINE</h3>
                             <p class="category-article-one box-shadow-text" id="category-article">Some interesting inspirations and camera settings during photo sessions in the studio. Thanks to this, your photos will be even better. We have create...</p>
-                            <p id="read-more">Read more<i class="fas fa-arrow-right"></i></p>
+                            <p  id="read-more"><a class="category-read-one" href="">Read more</a> &rarr;</p>
+                            </div>
                         </div>
 
                         <div>
@@ -93,21 +95,21 @@
                             <p class="category-title-two-date" id="date">11 December 2021</p>
                             <h3 class="category-title-two" id="category-title"></h3>
                             <p class="category-article-two" id="category-article">Do you know a portal with interesting photos on various topics and also free to download? I will check this article.Quick contactGet to know our offic...</p>
-                            <p class="" id="read-more">Read more</p>
+                            <p  id="read-more"><a class="category-read-two" href="">Read more</a> &rarr;</p>
                         </div>
                     </div>
 
-                    <div id="fashion-category">
-                        <h3 id="category-name">Fashion news</h3>
+                    <div id="entertainment-category">
+                        <h3 id="category-name">Entertainment news</h3>
                         <hr>
                         <div>
-                            <img class="fashion-news-image-one"  id="category-headline-image" src="" alt="">
+                            <img class="entertainment-news-image-one"  id="category-headline-image" src="" alt="">
                             <p class="category-title-one-date" id="date" >dateee</p>
                             <!-- <p class="placeholder-text">Image Not Available</p> -->
 
                             <h3 class="category-title-one" id="category-title">FASHION NEWS HEADLINE</h3>
                             <p class="category-article-one box-shadow-text" id="category-article">Some interesting inspirations and camera settings during photo sessions in the studio. Thanks to this, your photos will be even better. We have create...</p>
-                            <p id="read-more">Read more</p>
+                            <p id="read-more">Read more &rarr;</p>
                         </div>
 
                         <div>
@@ -115,7 +117,7 @@
                             <p class="category-title-two-date" id="date">11 December 2021</p>
                             <h3 class="category-title-two" id="category-title"></h3>
                             <p class="category-article-two" id="category-article">Do you know a portal with interesting photos on various topics and also free to download? I will check this article.Quick contactGet to know our offic...</p>
-                            <p id="read-more">Read more</p>
+                            <p id="read-more">Read more &rarr;</p>
                         </div>
                     </div>
                     
@@ -133,36 +135,44 @@
 
                     <div>
                         <img id="world-news-image" src="" alt="">
-                        <p id="date">11 December 2021</p>
+                        <p class="world-date-one" id="date">11 December 2021</p>
                         <h1 class="world-news-one" id="sub-headline"></h1>
                         <p class="world-article-one" id="article">We focus on and take care of the development of our articles, taking care of the highest level. Meet our creators and their biographies. In this secti...</p>
-                        <p id="read-more">Read more</p>
+                        <p  id="read-more"><a class="read-more-one" href="">Read more</a> </p>
                     </div>
 
                     <hr>
 
                     <div>
-                        <p id="date">11 December 2021</p>
+                        <p class="world-date-two" id="date">11 December 2021</p>
                         <h1 class="world-news-two" id="sub-headline"></h1>
                         <p class="world-article-two" id="article">We focus on and take care of the development of our articles, taking care of the highest level. Meet our creators and their biographies. In this secti...</p>
-                        <p id="read-more">Read more</p>
+                        <p id="read-more"><a class="read-more-two" href="">Read more</a></p>
                     </div>
 
                     <hr>
 
                     <div>
-                        <p id="date">11 December 2021</p>
+                        <p class="world-date-three" id="date">11 December 2021</p>
                         <h1 class="world-news-three" id="sub-headline"></h1>
                         <p class="world-article-three" id="article">We focus on and take care of the development of our articles, taking care of the highest level. Meet our creators and their biographies. In this secti...</p>
-                        <p id="read-more">Read more</p>
+                        <p  id="read-more"><a class="read-more-three" href="">Read more</a></p>
                     </div>
 
                     <hr>
 
-                    <div id="about-newspaper">
-                        <h4>About newspaper Put newletter here</h4>
+                    <!-- <div id="about-newspaper">
+                        
                         <p>
                             Visit our website every day and it will certainly be a useful and pleasant time for you. Use the navigation to find the articles.</p>
+                    </div> -->
+
+                    <div id="about-newspaper">
+                        <h4>Sign Up for Our Newsletter</h4>
+                        <form id="newsletterForm">
+                            <input type="email" id="emailInput" placeholder="Enter your email" required>
+                            <button type="submit">Subscribe</button>
+                          </form>
                     </div>
 
                 </div>
@@ -247,17 +257,18 @@
                     </div>
     
                 </div>
-                <div style="display: flex;">
+                <div style="display: flex; margin-top: 3rem;">
                     <div>
-                        <h3>Search Newspaper.com</h3>
+                        <!-- <h3>Search Newspaper.com</h3> -->
+                        <h3></h3>
                                           
                         <div class="search">
                             <!-- <input type="text" placeholder="Search" id="search">  -->
                             <form>
-                                <input type="text" id="search-results" placeholder="What are you looking for today?" style="width: 100%;">
+                                <!-- <input type="text" id="search-results" placeholder="What are you looking for today?" style="width: 100%;"> -->
                             </form>
 
-                            <i class="fas fa-search" id="search-icon"></i>
+                            <!-- <i class="fas fa-search" id="search-icon"></i> -->
                             
                         </div>
 
@@ -323,7 +334,7 @@
             <div>
                 <h1>NEWSPAPER.com</h1>
                 <p style="padding-top: 1.5rem; color: #c5c5c5; font-family: 'Inter', sans-serif;">Daily newspaper magazine with interesting <br> articles and guides on modern <br> technology and fashion.</p>
-                <p style="padding-top: 1.4rem;">Read more</p>
+                <p style="padding-top: 1.4rem; color:#e09d37; font-weight: 500;">Read more</p>
             </div>
     
             <div class="footer-nav">

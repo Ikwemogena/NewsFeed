@@ -60,17 +60,6 @@ function callApi() {
     .finally(() => hideLoader());
 }
 
-
-// const COUNTRY_LOCATION_API = '4efb6d0c0ad74c7aab5b78babfb9a26d';
-// get headlines tailored to country
-// function getCountry(){
-    // fetch(`https://api.ipgeolocation.io/ipgeo?apiKey=${COUNTRY_LOCATION_API}`)
-//     fetch(`https://api.ipgeolocation.io/ipgeo?apiKey=4efb6d0c0ad74c7aab5b78babfb9a26d`)
-//     .then((response) => response.json())
-//     .then((data) => console.log(data))
-// }
-// getCountry();
-
 // get category headlines
 function getHeadlines(countryTag, countryName) {
     // fetch(`${url}top-headlines/sources?apiKey=${apiKey}&category=${category}`)
@@ -176,6 +165,27 @@ function getWorldNews() {
             worldArticleOne.textContent = data.articles[0].description;
             worldArticleTwo.textContent = data.articles[1].description;
             worldArticleThree.textContent = data.articles[2].description;
+
+            const worldDateOne = document.querySelector('.world-date-one');
+            const worldDateTwo = document.querySelector('.world-date-two');
+            const worldDateThree = document.querySelector('.world-date-three');
+
+            displayDate(worldDateOne, data.articles[0].publishedAt);
+            displayDate(worldDateTwo, data.articles[1].publishedAt);
+            displayDate(worldDateThree, data.articles[2].publishedAt);
+
+            const readMoreOne = document.querySelector('.read-more-one');
+            const readMoreTwo = document.querySelector('.read-more-two');
+            const readMoreThree = document.querySelector('.read-more-three');
+
+            readMoreOne.href = data.articles[0].url;
+            readMoreOne.target = '_blank';
+
+            readMoreTwo.href = data.articles[1].url;
+            readMoreTwo.target = '_blank';
+
+            readMoreThree.href = data.articles[2].url;
+            readMoreThree.target = '_blank';
         })
         .catch(err => console.log(err));
 }
@@ -232,12 +242,23 @@ function getCategoryNews() {
             displayDate(articleOneDate, data.articles[0].publishedAt)
             displayDate(articleTwoDate, data.articles[1].publishedAt)
 
+            const readMoreOne = document.querySelector('.category-read-one');
+            const readMoreTwo = document.querySelector('.category-read-two');
+            const readMoreThree = document.querySelector('.category-read-three');
+
+            readMoreOne.href = data.articles[0].url;
+            readMoreOne.target = '_blank';
+
+            readMoreTwo.href = data.articles[1].url;
+            readMoreTwo.target = '_blank';
+
+            readMoreThree.href = data.articles[2].url;
+            readMoreThree.target = '_blank';
 
             // const articleOneLink = document.querySelector('.category-title-one-link');
             // const articleTwoLink = document.querySelector('.category-title-two-link');
 
             // articleOneDate.textContent = ;
-1
         })
         .catch(err => console.log(err))
 
@@ -279,38 +300,6 @@ searchInput.addEventListener('keydown', function(event) {
         }
     }
 });
-
-// searchInput.addEventListener('input', function() {
-//     const searchTerm = searchInput.value.trim();
-//     if (searchTerm !== '') {
-//         console.log('Search term:', searchTerm);
-//         // searchNews(searchTerm);
-//     }
-// });
-
-    
-
-    
-
-    
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 function getCountryInfo() {
   fetch('https://ipapi.co/json/')

@@ -1,9 +1,6 @@
 import categoryNews from "./category";
 
 export default function switchTabs(){
-    console.log('switchTabs')
-
-
     // Get all the navigation links
     const navLinks = document.querySelectorAll('.nav-link');
 
